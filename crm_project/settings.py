@@ -11,13 +11,13 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
 from pathlib import Path
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
+sys.path.append(str(BASE_DIR))
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'crm_project.settings')
+# Quick-start development seect.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-^9-mv@8dr_h0r3mcu@l993v32-c%l*b$u(bd!2zag5%7b77)2o'
@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-^9-mv@8dr_h0r3mcu@l993v32-c%l*b$u(bd!2zag5%7b77)2o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']ttings - unsuitable for production
+# See https://docs.djangoproj
 
 
 # Application definition
