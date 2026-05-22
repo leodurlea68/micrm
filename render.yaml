@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: micrm
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn crm_project.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.14.5
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"

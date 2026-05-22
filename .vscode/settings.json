@@ -1,0 +1,18 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/venv/Scripts/python.exe",
+    "python.terminal.activateEnvironment": true,
+    "files.associations": {
+        "**/templates/**/*.html": "django-html",
+        "**/templates/**/*.py": "python"
+    },
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "git.autofetch": true,
+    "editor.fontSize": 14,
+    "editor.wordWrap": "on",
+    "workbench.colorTheme": "Dark+"
+}
