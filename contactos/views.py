@@ -5,7 +5,7 @@ from django.db.models import Count
 from django.db import models
 from .forms import ContactoForm 
 
-@login_required
+#@login_required
 def dashboard(request):
     total_contactos = Contacto.objects.count()
     total_empresas = Empresa.objects.count()
@@ -18,7 +18,7 @@ def dashboard(request):
     }
     return render(request, 'contactos/dashboard.html', context)
 
-@login_required
+#@login_required
 def lista_contactos(request):
     contactos = Contacto.objects.all().select_related('empresa')
     return render(request, 'contactos/lista_contactos.html', {'contactos': contactos})
@@ -39,17 +39,17 @@ def lista_contactos(request):
         'query': query
     })
 
-@login_required
+#@login_required
 def detalle_contacto(request, pk):
     contacto = get_object_or_404(Contacto, pk=pk)
     return render(request, 'contactos/detalle_contacto.html', {'contacto': contacto})
 
-@login_required
+#@login_required
 def lista_empresas(request):
     empresas = Empresa.objects.all()
     return render(request, 'contactos/lista_empresas.html', {'empresas': empresas})
 
-@login_required
+#@login_required
 def crear_contacto(request):
     if request.method == 'POST':
         form = ContactoForm(request.POST)
@@ -60,7 +60,7 @@ def crear_contacto(request):
         form = ContactoForm()
     return render(request, 'contactos/crear_contacto.html', {'form': form})
 
-@login_required
+#@login_required
 def editar_contacto(request, pk):
     contacto = get_object_or_404(Contacto, pk=pk)
     if request.method == 'POST':
@@ -72,7 +72,7 @@ def editar_contacto(request, pk):
         form = ContactoForm(instance=contacto)
     return render(request, 'contactos/editar_contacto.html', {'form': form, 'contacto': contacto})
 
-@login_required
+#@login_required
 def eliminar_contacto(request, pk):
     contacto = get_object_or_404(Contacto, pk=pk)
     if request.method == 'POST':
