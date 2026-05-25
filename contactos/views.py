@@ -3,7 +3,9 @@ from django.contrib.auth.decorators import login_required
 from .models import Contacto, Empresa, Interaccion
 from django.db.models import Count
 from django.db import models
-from .forms import ContactoForm 
+from .forms import ContactoForm
+from django.db import connection
+from django.core.management import call_command 
 
 #@login_required
 def dashboard(request):
@@ -78,4 +80,12 @@ def eliminar_contacto(request, pk):
     if request.method == 'POST':
         contacto.delete()
         return redirect('lista_contactos')
-    return render(request, 'contactos/eliminar_contacto.html', {'contacto': contacto})
+    return render(request, 'contactos/eliminar_contacto.html', {'contacto': contacto})def migrar_bd(request):
+    """Vista temporal para ejecutar migraciones en Render"""
+    try:
+        # Ejecutar migraciones
+        call_command('migrate', interactive=False, verbosity=3)
+        return render(request, 'contactos/base.html', {'mensaje': 'Migraciones ejecutadas correctamente'})
+    except Exception as e:
+        return render(request, 'contactos/base.html', {'mensaje': f'Error: {str(e)}'})
+
