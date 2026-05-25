@@ -7,7 +7,8 @@ from .forms import ContactoForm
 from django.db import connection
 from django.core.management import call_command
 from django.contrib.auth.models import User
-from django.http import HttpResponse 
+from django.http import HttpResponse
+from io import StringIO 
 
 #@login_required
 def dashboard(request):
