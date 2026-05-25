@@ -80,8 +80,9 @@ def eliminar_contacto(request, pk):
     if request.method == 'POST':
         contacto.delete()
         return redirect('lista_contactos')
-    return render(request, 'contactos/eliminar_contacto.html', {'contacto': contacto})def migrar_bd(request):
-    """Vista temporal para ejecutar migraciones en Render"""
+    return render(request, 'contactos/eliminar_contacto.html', {'contacto': contacto})
+
+def migrar_bd(request):
     try:
         # Ejecutar migraciones
         call_command('migrate', interactive=False, verbosity=3)
