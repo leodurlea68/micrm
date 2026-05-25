@@ -5,7 +5,9 @@ from django.db.models import Count
 from django.db import models
 from .forms import ContactoForm
 from django.db import connection
-from django.core.management import call_command 
+from django.core.management import call_command
+from django.contrib.auth.models import User
+from django.http import HttpResponse 
 
 #@login_required
 def dashboard(request):
@@ -89,4 +91,15 @@ def migrar_bd(request):
         return render(request, 'contactos/base.html', {'mensaje': 'Migraciones ejecutadas correctamente'})
     except Exception as e:
         return render(request, 'contactos/base.html', {'mensaje': f'Error: {str(e)}'})
+    
+    #def crear_admin(request):
+     #   User.objects.create_superuser('admin2', 'admin@crm.com', 'admin123')
+   # return HttpResponse("Superusuario creado: usuario=admin2, contraseña=admin123")
 
+def crear_admin(request):
+    # Verificar si ya existe
+    if not User.objects.filter(username='admin_crm').exists():
+        User.objects.create_superuser('admin_crm', 'admin@crm.com', 'admin123')
+        return HttpResponse("Superusuario creado: <br> Usuario: admin_crm <br> Contraseña: admin123")
+    else:
+        return HttpResponse("El superusuario ya existe. Usa: admin_crm / admin123")
