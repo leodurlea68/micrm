@@ -86,12 +86,12 @@ def eliminar_contacto(request, pk):
     return render(request, 'contactos/eliminar_contacto.html', {'contacto': contacto})
 
 def migrar_bd(request):
+    output = StringIO()
     try:
-        # Ejecutar migraciones
-        call_command('migrate', interactive=False, verbosity=3)
-        return render(request, 'contactos/base.html', {'mensaje': 'Migraciones ejecutadas correctamente'})
+        call_command('migrate', interactive=False, verbosity=3, stdout=output)
+        return HttpResponse(f"<pre> MIGRACIONES EXITOSAS:\n{output.getvalue()}</pre>")
     except Exception as e:
-        return render(request, 'contactos/base.html', {'mensaje': f'Error: {str(e)}'})
+        return HttpResponse(f"<pre> ERROR: {str(e)}</pre>")
     
     #def crear_admin(request):
      #   User.objects.create_superuser('admin2', 'admin@crm.com', 'admin123')
